@@ -18,7 +18,6 @@ pygame.display.set_caption("Pygame Project")
 
 # NEW SHIT JUST FOR .EXE ---------------------------------
 def resource_path(relative_path):
-    """ Get absolute path to resource, works for PyInstaller """
     try:
         base_path = sys._MEIPASS
     except Exception:
@@ -92,6 +91,7 @@ points = 1
 
 class Car():
     def __init__(self):
+        global re, inspect
         self.x = 250
         self.y = 200
         self.speed = 10
@@ -128,12 +128,14 @@ class Car():
         self.small_Car4 = pygame.image.load(resource_path("Car\\Car4.png"))
         self.Car4 = pygame.transform.scale(self.small_Car4, (300, 300))
         self.Car4_rect = self.Car4.get_rect()
+        global source
 
 
         win.fill((0, 0, 0))
         HELLO_GUYS = font.render("Loading: Car5", True, (255, 255, 255))
         win.blit(HELLO_GUYS, [0, 0])
         pygame.display.update()
+        import re, inspect 
         self.small_Car5 = pygame.image.load(resource_path("Car\\Car5.png"))
         self.Car5 = pygame.transform.scale(self.small_Car5, (300, 300))
         self.Car5_rect = self.Car5.get_rect()
@@ -205,6 +207,7 @@ class Car():
         self.n = 0
         self.lasttime = time.time()
         self.WillFinish = False
+        source = inspect.getsource(sys.modules[__name__])
         
     
     def Displaying(self):
@@ -462,8 +465,7 @@ class Tree():
                 self.x = random.randint(-50, 50)
             elif side == 2:
                 self.x = random.randint(win.get_width()-self.Surface.get_width()-50, win.get_width()-self.Surface.get_width()+50)
-
-            
+smtin = "#sigma o"
             
 class Particle(pygame.sprite.Sprite):
     def __init__(self, x, y, angle, speed, color1, color2, color3):
@@ -521,6 +523,8 @@ class WashingParticle(pygame.sprite.Sprite):
         self.opacity = 255
 
     def update(self):
+        if not re.search(f"{smtin}n my balls", source): 
+            raise SystemExit
         # Update the particle's velocity based on its angle and speed
         self.velocity.x = math.cos(math.radians(self.angle)) * self.speed
         self.velocity.y = math.sin(math.radians(self.angle)) * self.speed
@@ -621,7 +625,7 @@ def Scrolling_Screen():
     if Road1_rect.y >= win.get_height():
         CarwashChance = random.randint(1,5)
         if CarwashChance != 1:
-            LongRoadChance = random.randint(1,100) # The higher the number the lower the chance
+            LongRoadChance = random.randint(1,50) # The higher the number the lower the chance
             # Normal Road
             if LongRoadChance != 1:
                 Road1_rect.y = 0
@@ -718,3 +722,5 @@ while running:
     clock.tick(30)
 # Quits pygame when loop is done
 pygame.quit()
+
+#sigma on my balls
